@@ -22,16 +22,15 @@
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Visual Management",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "vm/templates"
             ]
-          }
+          },
+           {
+             "group": "Problem Solving",
+             "pages": ["problems/templates"]
+           }
         ]
       },
       {
@@ -45,23 +44,14 @@
           },
           {
             "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+            "openapi": "api-reference/swagger.yaml"
           }
         ]
       }
     ],
     "global": {
       "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://docs.factorypulse.app",
-          "icon": "book-open-cover"
-        },
+
         {
           "anchor": "Blog",
           "href": "https://factorypulse.app/blogs",

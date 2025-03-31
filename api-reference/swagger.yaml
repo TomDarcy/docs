@@ -1,0 +1,63 @@
+---
+openapi: 3.0.1
+info:
+  title: Factory Pulse API V1
+  version: v1
+  description: API documentation for Factory Pulse application
+paths:
+  "/api/v1/me":
+    get:
+      summary: Get current user information
+      tags:
+      - Me
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      name:
+                        type: string
+                    required:
+                    - id
+                    - email
+        '401':
+          description: unauthorized
+    delete:
+      summary: Delete current user account
+      tags:
+      - Me
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: account deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '401':
+          description: unauthorized
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
