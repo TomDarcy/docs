@@ -5,7 +5,9 @@ title: Authentication
 
 All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
 
-Every user in FactoryPulse can have multiple API tokens. They can create and revoke tokens on API section of their user settings.
+Only account admins can create and revoke API tokens inside the FactoryPulse UI. The token is tied to the account and the user that created it. One user can have multiple tokens, this is useful if you have multiple integrations and want to keep track of them.
+
+They can create and revoke tokens on API section of their user settings.
 
 Tokens keep track of the time they were last used so users can verify their integrations are working correctly and keep an eye on them.
 
