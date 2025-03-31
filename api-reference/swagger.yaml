@@ -51,10 +51,10 @@ paths:
         '401':
           description: unauthorized
 servers:
-- url: http://{defaultHost}
+- url: https://factorypulse.app
   variables:
     defaultHost:
-      default: localhost:3000
+      default: https://factorypulse.app
 components:
   securitySchemes:
     bearer_auth:

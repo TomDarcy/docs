@@ -1,33 +1,41 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Connect your data to FactoryPulse'
 ---
-
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
 
 ## Welcome
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+At FactoryPulse, we want to make it easy to connect your data to our platform. We believe that the best way to do this is to provide a robust API that can be used to connect your data to our platform.
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+If you are looking to build integrations with FactoryPulse, this is the place to start. If you know you want to build an integration, but don't know where to start, get in touch with us at [support@factorypulse.app](mailto:support@factorypulse.app) and we can help you get started.
 
 ## Authentication
 
 All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+Every user in FactoryPulse can have multiple API tokens. They can create and revoke tokens on API section of their user settings.
+
+Tokens keep track of the time they were last used so users can verify their integrations are working correctly and keep an eye on them.
+
+
+Authentication with the FactoryPulse API is as simple as passing in the Authorization header.
+
+An example Authorization header would look like the following:
+
+``` json
+Pass hello
+GET /api/v1/me.json
+Authorization: Bearer {exampletoken}
+```
+If you'd like to authenticate users through the API using their email and password to retrieve an API token, you can make a POST request to the auth endpoint with the user's email and password. This is handy for authenticating from a mobile app, etc.
+
+``` json
+POST /api/v1/auth.json
+Params: { email: "steve@apple.com", password: "hunter2" }
+```
+
+This will return a JSON response with a token you can use to access the API.
+
+``` json
+{ token: "abcd1234" }
 ```

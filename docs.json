@@ -22,14 +22,25 @@
             ]
           },
           {
+            "group": "Accounts",
+            "pages": [
+              "accounts/inviting-users"
+            ]
+          },
+          {
             "group": "Visual Management",
             "pages": [
-              "vm/templates"
+              "vm/quickstart",
+              "vm/templates",
+              "vm/orgLevels"
             ]
           },
            {
              "group": "Problem Solving",
-             "pages": ["problems/templates"]
+             "pages": [
+              "problems/quickstart",
+              "problems/templates"
+             ]
            }
         ]
       },
@@ -53,7 +64,7 @@
       "anchors": [
 
         {
-          "anchor": "Blog",
+          "anchor": "Our Blog",
           "href": "https://factorypulse.app/blogs",
           "icon": "newspaper"
         }
