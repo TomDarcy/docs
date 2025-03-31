@@ -25,6 +25,7 @@
             "group": "Account setup",
             "pages": [
               "accounts/inviting-users",
+              "accounts/billing",
               "accounts/org-levels",
               "accounts/org-setup"
             ]
@@ -33,9 +34,7 @@
             "group": "Visual Management",
             "pages": [
               "vm/quickstart",
-              "vm/templates",
-              "vm/orgLevels"
-            ]
+              "vm/templates"            ]
           },
            {
              "group": "Problem Solving",
