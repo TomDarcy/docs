@@ -22,9 +22,11 @@
             ]
           },
           {
-            "group": "Accounts",
+            "group": "Account setup",
             "pages": [
-              "accounts/inviting-users"
+              "accounts/inviting-users",
+              "accounts/org-levels",
+              "accounts/org-setup"
             ]
           },
           {
