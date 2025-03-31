@@ -24,6 +24,7 @@
           {
             "group": "Account setup",
             "pages": [
+              "accounts/intro",
               "accounts/inviting-users",
               "accounts/billing",
               "accounts/org-levels",
