@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "FactoryPulse",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0072ff",
+    "light": "#0072ff",
+    "dark": "#0072ff"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/192.png",
   "navigation": {
     "tabs": [
       {
@@ -17,8 +17,8 @@
             "group": "Get Started",
             "pages": [
               "introduction",
-              "quickstart",
-              "development"
+              "problems/quickstart",
+              "vm/quickstart"
             ]
           },
           {
@@ -59,17 +59,12 @@
       "anchors": [
         {
           "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "href": "https://docs.factorypulse.app",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://factorypulse.app/blogs",
           "icon": "newspaper"
         }
       ]
@@ -82,21 +77,20 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Get in touch",
+        "href": "mailto:support@factorypulse.app"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "App",
+      "href": "https://factorypulse.app"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/factorypulse",
+      "linkedin": "https://linkedin.com/company/factorypulse"
     }
   }
 }
