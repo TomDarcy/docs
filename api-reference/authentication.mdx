@@ -1,0 +1,33 @@
+---
+title: Authentication
+---
+
+
+All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+
+Every user in FactoryPulse can have multiple API tokens. They can create and revoke tokens on API section of their user settings.
+
+Tokens keep track of the time they were last used so users can verify their integrations are working correctly and keep an eye on them.
+
+
+Authentication with the FactoryPulse API is as simple as passing in the Authorization header.
+
+An example Authorization header would look like the following:
+
+``` json
+Pass hello
+GET /api/v1/me.json
+Authorization: Bearer {exampletoken}
+```
+If you'd like to authenticate users through the API using their email and password to retrieve an API token, you can make a POST request to the auth endpoint with the user's email and password. This is handy for authenticating from a mobile app, etc.
+
+``` json
+POST /api/v1/auth.json
+Params: { email: "steve@apple.com", password: "hunter2" }
+```
+
+This will return a JSON response with a token you can use to access the API.
+
+``` json
+{ token: "abcd1234" }
+```
