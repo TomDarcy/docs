@@ -1,63 +1,116 @@
----
-openapi: 3.0.1
+openapi: 3.0.3
 info:
-  title: Factory Pulse API V1
-  version: v1
-  description: API documentation for Factory Pulse application
+  title: FactoryPulse API
+  version: 1.0.0
+  description: API documentation for FactoryPulse application
 paths:
-  "/api/v1/me":
+  '/api/v1/kpis':
     get:
-      summary: Get current user information
+      summary: List KPIs
       tags:
-      - Me
+        - KPIs
       security:
-      - bearer_auth: []
+        - BearerAuth: []
       responses:
         '200':
-          description: user found
+          description: KPIs found
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  user:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      email:
-                        type: string
-                      name:
-                        type: string
-                    required:
-                    - id
-                    - email
+                  kpis:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Production Rate
+                        description:
+                          type: string
+                          nullable: true
+                          example: Units produced per hour
+                        unit:
+                          type: string
+                          enum:
+                            - units
+                            - hours
+                            - percentage
+                            - count
+                            - kg
+                            - g
+                            - l
+                            - ml
+                            - pcs
+                            - doses
+                          example: units
+                        data_type:
+                          type: string
+                          enum:
+                            - number
+                            - currency
+                          example: number
+                        frequency:
+                          type: string
+                          enum:
+                            - shiftly
+                            - daily
+                            - weekly
+                            - monthly
+                          example: daily
+                        direction:
+                          type: string
+                          enum:
+                            - higher
+                            - lower
+                          example: higher
+                        aggregation:
+                          type: string
+                          enum:
+                            - sum
+                            - average
+                            - min
+                            - max
+                          example: sum
+                        values:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                format: date
+                                example: '2024-03-14'
+                              actual:
+                                type: number
+                                format: float
+                                nullable: true
+                                example: 95.5
+                              target:
+                                type: number
+                                format: float
+                                nullable: true
+                                example: 100.0
+                              metadata:
+                                type: object
+                                example: {}
+                      required:
+                        - id
+                        - name
+                        - data_type
+                        - frequency
+                        - direction
         '401':
-          description: unauthorized
-    delete:
-      summary: Delete current user account
-      tags:
-      - Me
-      security:
-      - bearer_auth: []
-      responses:
-        '200':
-          description: account deleted
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-        '401':
-          description: unauthorized
-servers:
-- url: https://factorypulse.app
-  variables:
-    defaultHost:
-      default: https://factorypulse.app
+          description: Unauthorized
+        '403':
+          description: Forbidden - Invalid subscription
 components:
   securitySchemes:
-    bearer_auth:
+    BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
