@@ -33,7 +33,9 @@
             "group": "Visual Management",
             "pages": [
               "vm/quickstart",
-              "vm/templates"            ]
+              "vm/templates",
+              "vm/kpi"
+            ]
           },
            {
              "group": "Problem Solving",
@@ -63,7 +65,11 @@
     ],
     "global": {
       "anchors": [
-
+        {
+          "anchor": "Get in touch",
+          "href": "https://factorypulse.app/contacts/new",
+          "icon": "comment"
+        },
         {
           "anchor": "Our Blog",
           "href": "https://factorypulse.app/blogs",
