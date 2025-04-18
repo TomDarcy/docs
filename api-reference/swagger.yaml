@@ -9,8 +9,7 @@ servers:
     variables:
       defaultHost:
         default: https://factorypulse.app
-  - url: '/api/v1'
-    description: API V1
+
 paths:
   '/api/v1/kpis':
     get:
