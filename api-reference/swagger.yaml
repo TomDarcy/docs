@@ -1,27 +1,33 @@
 ---
-
 openapi: 3.0.3
 info:
   title: FactoryPulse API
   version: 1.0.0
   description: API documentation for FactoryPulse application
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
 servers:
-- url: https://factorypulse.app
-  variables:
-    defaultHost:
-      default: https://factorypulse.app
-- url: "/api/v1"
-  description: API V1
+  - url: "{protocol}://{host}"
+    variables:
+      protocol:
+        enum: [http, https]
+        default: https
+      host:
+        default: factorypulse.app
+  - url: "/api/v1"
+    description: API V1
 paths:
   "/api/v1/kpis":
     get:
+      operationId: listKPIs
       summary: List KPIs
       tags:
-      - KPIs
+        - KPIs
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       responses:
-        '200':
+        "200":
           description: KPIs found
           content:
             application/json:
@@ -31,127 +37,47 @@ paths:
                   kpis:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        name:
-                          type: string
-                          example: Production Rate
-                        description:
-                          type: string
-                          nullable: true
-                          example: Units produced per hour
-                        unit:
-                          type: string
-                          enum:
-                          - units
-                          - hours
-                          - percentage
-                          - count
-                          - kg
-                          - g
-                          - l
-                          - ml
-                          - pcs
-                          - doses
-                          example: units
-                        data_type:
-                          type: string
-                          enum:
-                          - number
-                          - currency
-                          example: number
-                        frequency:
-                          type: string
-                          enum:
-                          - shiftly
-                          - daily
-                          - weekly
-                          - monthly
-                          example: daily
-                        direction:
-                          type: string
-                          enum:
-                          - higher
-                          - lower
-                          example: higher
-                        aggregation:
-                          type: string
-                          enum:
-                          - sum
-                          - average
-                          - min
-                          - max
-                          example: sum
-                        values:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              date:
-                                type: string
-                                format: date
-                                example: '2024-03-14'
-                              actual:
-                                type: number
-                                format: float
-                                nullable: true
-                                example: 95.5
-                              target:
-                                type: number
-                                format: float
-                                nullable: true
-                                example: 100.0
-                              metadata:
-                                type: object
-                                example: {}
-                      required:
-                      - id
-                      - name
-                      - data_type
-                      - frequency
-                      - direction
-        '401':
+                      $ref: "#/components/schemas/KPI"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden - Invalid subscription
   "/api/v1/kpis/{id}/values":
     get:
+      operationId: getKPIValues
       summary: Get KPI values
       tags:
-      - KPIs
+        - KPIs
       security:
-      - BearerAuth: []
+        - BearerAuth: []
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-      - name: date_from
-        in: query
-        format: date
-        required: true
-        description: Start date for KPI values (YYYY-MM-DD)
-        schema:
-          type: string
-      - name: date_to
-        in: query
-        format: date
-        required: true
-        description: End date for KPI values (YYYY-MM-DD)
-        schema:
-          type: string
-      - name: org_id
-        in: query
-        required: true
-        description: Organization ID to fetch values for
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: date_from
+          in: query
+          required: true
+          description: Start date for KPI values (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: date_to
+          in: query
+          required: true
+          description: End date for KPI values (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: org_id
+          in: query
+          required: true
+          description: Organization ID to fetch values for
+          schema:
+            type: integer
       responses:
-        '200':
+        "200":
           description: KPI values found
           content:
             application/json:
@@ -159,84 +85,69 @@ paths:
                 type: object
                 properties:
                   kpi:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                        example: 1
-                      name:
-                        type: string
-                        example: Production Rate
-                      unit:
-                        type: string
-                        example: units
-                      frequency:
-                        type: string
-                        example: daily
-                      aggregation:
-                        type: string
-                        example: sum
+                    $ref: "#/components/schemas/KPI"
                   values:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        date:
-                          type: string
-                          format: date
-                          example: '2024-03-14'
-                        actual:
-                          type: number
-                          nullable: true
-                          example: 95.5
-                        target:
-                          type: number
-                          nullable: true
-                          example: 100.0
-        '401':
+                      $ref: "#/components/schemas/KPIValue"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden - Invalid subscription
-        '404':
+        "404":
           description: KPI not found
-        '422':
+        "422":
           description: Invalid date format
   "/api/v1/orgs":
     get:
+      operationId: listOrgs
       summary: list orgs
       tags:
-      - Orgs
+        - Orgs
+      security:
+        - BearerAuth: []
       description: Retrieves a list of organizations.
       responses:
-        '200':
+        "200":
           description: successful
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  "$ref": "#/components/schemas/org"
+                  $ref: "#/components/schemas/Organization"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
   "/api/v1/orgs/{id}":
     parameters:
-    - name: id
-      in: path
-      description: ID of the Org to retrieve
-      required: true
-      schema:
-        type: string
+      - name: id
+        in: path
+        description: ID of the Org to retrieve
+        required: true
+        schema:
+          type: string
     get:
+      operationId: getOrg
       summary: show org
       tags:
-      - Orgs
-      description: Organization not found for the provided ID.
+        - Orgs
+      security:
+        - BearerAuth: []
+      description: Get organization details
       responses:
-        '200':
+        "200":
           description: successful
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/org"
-        '404':
+                $ref: "#/components/schemas/Organization"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
           description: not found
 components:
   securitySchemes:
@@ -244,3 +155,101 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+  schemas:
+    KPI:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Production Rate
+        description:
+          type: string
+          nullable: true
+          example: Units produced per hour
+        unit:
+          type: string
+          enum:
+            - units
+            - hours
+            - percentage
+            - count
+            - kg
+            - g
+            - l
+            - ml
+            - pcs
+            - doses
+          example: units
+        data_type:
+          type: string
+          enum:
+            - number
+            - currency
+          example: number
+        frequency:
+          type: string
+          enum:
+            - shiftly
+            - daily
+            - weekly
+            - monthly
+          example: daily
+        direction:
+          type: string
+          enum:
+            - higher
+            - lower
+          example: higher
+        aggregation:
+          type: string
+          enum:
+            - sum
+            - average
+            - min
+            - max
+          example: sum
+      required:
+        - id
+        - name
+        - data_type
+        - frequency
+        - direction
+    KPIValue:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-03-14"
+        actual:
+          type: number
+          format: float
+          nullable: true
+          example: 95.5
+        target:
+          type: number
+          format: float
+          nullable: true
+          example: 100.0
+        metadata:
+          type: object
+          example: {}
+    Organization:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Factory One"
+        description:
+          type: string
+          nullable: true
+          example: "Main production facility"
+      required:
+        - id
+        - name
