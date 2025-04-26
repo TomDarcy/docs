@@ -1,23 +1,25 @@
 ---
+
 openapi: 3.0.3
 info:
   title: FactoryPulse API
   version: 1.0.0
   description: API documentation for FactoryPulse application
 servers:
-  - url: https://factorypulse.app
-    variables:
-      defaultHost:
-        default: https://factorypulse.app
-
+- url: https://factorypulse.app
+  variables:
+    defaultHost:
+      default: https://factorypulse.app
+- url: "/api/v1"
+  description: API V1
 paths:
-  '/api/v1/kpis':
+  "/api/v1/kpis":
     get:
       summary: List KPIs
       tags:
-        - KPIs
+      - KPIs
       security:
-        - BearerAuth: []
+      - BearerAuth: []
       responses:
         '200':
           description: KPIs found
@@ -44,44 +46,44 @@ paths:
                         unit:
                           type: string
                           enum:
-                            - units
-                            - hours
-                            - percentage
-                            - count
-                            - kg
-                            - g
-                            - l
-                            - ml
-                            - pcs
-                            - doses
+                          - units
+                          - hours
+                          - percentage
+                          - count
+                          - kg
+                          - g
+                          - l
+                          - ml
+                          - pcs
+                          - doses
                           example: units
                         data_type:
                           type: string
                           enum:
-                            - number
-                            - currency
+                          - number
+                          - currency
                           example: number
                         frequency:
                           type: string
                           enum:
-                            - shiftly
-                            - daily
-                            - weekly
-                            - monthly
+                          - shiftly
+                          - daily
+                          - weekly
+                          - monthly
                           example: daily
                         direction:
                           type: string
                           enum:
-                            - higher
-                            - lower
+                          - higher
+                          - lower
                           example: higher
                         aggregation:
                           type: string
                           enum:
-                            - sum
-                            - average
-                            - min
-                            - max
+                          - sum
+                          - average
+                          - min
+                          - max
                           example: sum
                         values:
                           type: array
@@ -106,48 +108,48 @@ paths:
                                 type: object
                                 example: {}
                       required:
-                        - id
-                        - name
-                        - data_type
-                        - frequency
-                        - direction
+                      - id
+                      - name
+                      - data_type
+                      - frequency
+                      - direction
         '401':
           description: Unauthorized
         '403':
           description: Forbidden - Invalid subscription
-  '/api/v1/kpis/{id}/values':
+  "/api/v1/kpis/{id}/values":
     get:
       summary: Get KPI values
       tags:
-        - KPIs
+      - KPIs
       security:
-        - BearerAuth: []
+      - BearerAuth: []
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-        - name: date_from
-          in: query
-          required: true
-          schema:
-            type: string
-            format: date
-          description: Start date for KPI values (YYYY-MM-DD)
-        - name: date_to
-          in: query
-          required: true
-          schema:
-            type: string
-            format: date
-          description: End date for KPI values (YYYY-MM-DD)
-        - name: org_id
-          in: query
-          required: true
-          schema:
-            type: integer
-          description: Organization ID to fetch values for
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: date_from
+        in: query
+        format: date
+        required: true
+        description: Start date for KPI values (YYYY-MM-DD)
+        schema:
+          type: string
+      - name: date_to
+        in: query
+        format: date
+        required: true
+        description: End date for KPI values (YYYY-MM-DD)
+        schema:
+          type: string
+      - name: org_id
+        in: query
+        required: true
+        description: Organization ID to fetch values for
+        schema:
+          type: integer
       responses:
         '200':
           description: KPI values found
@@ -199,6 +201,43 @@ paths:
           description: KPI not found
         '422':
           description: Invalid date format
+  "/api/v1/orgs":
+    get:
+      summary: list orgs
+      tags:
+      - Orgs
+      description: Retrieves a list of organizations.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/org"
+  "/api/v1/orgs/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: ID of the Org to retrieve
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show org
+      tags:
+      - Orgs
+      description: Organization not found for the provided ID.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/org"
+        '404':
+          description: not found
 components:
   securitySchemes:
     BearerAuth:
