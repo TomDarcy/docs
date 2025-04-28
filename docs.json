@@ -35,7 +35,8 @@
             "pages": [
               "vm/quickstart",
               "vm/kpi",
-              "vm/templates"
+              "vm/templates",
+              "vm/tier_boards"
             ]
           },
            {

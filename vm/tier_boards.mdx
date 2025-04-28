@@ -1,0 +1,31 @@
+---
+title: "Tier Boards"
+description: "Understand how to use tier boards to manage your factory operations"
+---
+
+## Why use a tiered structure?
+
+We know that in a factory we all spend a lot of time moving information up and down the hierarchy. This is a waste of time and resources.
+
+We also know that the higher up the hierarchy you go, the more abstract the information you need to make decisions. We've tried to make that process as simple as possible.
+
+<Steps>
+  <Step title="Create your org levels">
+  The first step is to define what the levels are in your organisation. This is done in the [org levels](/accounts/org-levels) page. We think of this as the scaffolding we build the structure on top of.
+  </Step>
+  <Step title="Create your orgs">
+  The next step is to create your orgs. This is done in the [orgs](/accounts/org-setup) page. This creates the org chart view of your organisation so we know what information should flow where.
+  </Step>
+  <Step title="Create your tier boards">
+  The following step is to create your tier boards. This is done in the [tier boards](/vm/tier-boards) page. This enables you to create different views for different audiences.
+  </Step>
+  <Step title="Widget configuration">
+  <Warning>
+  Ensure you have set the right aggregation method in the [KPI setup](/vm/kpi) page. This will ensure that the data is aggregated at the correct level for your tier boards.
+  </Warning>
+The final step is to configure the widgets to aggregate in the way you want. When creating or editing a widget you can select whether you want data from child organisations to be included in this visualisation.
+If you tick the aggregate button this will aggregate the data from all child organisations. If you want to select a specific child organisation you can tick the "Do not aggregate from all child orgs" button and select the child organisation from org edit page by picking a selected child organisation.
+An example of this is if you want to display output for the factory on the factory board you might not want to add up output from all cells, you would only want to see the output from the final step in your process.
+<img src="/images/vm/widget_editor.png" alt="Widget configuration" className="rounded-lg border-2 border-gray-200 shadow-lg" />
+  </Step>
+</Steps>
