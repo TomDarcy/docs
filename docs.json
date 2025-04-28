@@ -44,6 +44,11 @@
               "problems/quickstart",
               "problems/templates"
              ]
+           },
+           {
+            "group": "Continous Improvement",
+            "pages": [
+              "ci/quickstart"            ]
            }
         ]
       },
