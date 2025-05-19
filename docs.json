@@ -50,6 +50,12 @@
             "group": "Continous Improvement",
             "pages": [
               "ci/quickstart"            ]
+           },
+           {
+            "group": "Risk Assessments",
+            "pages": [
+              "ra/quickstart"
+            ]
            }
         ]
       },
@@ -74,12 +80,12 @@
       "anchors": [
         {
           "anchor": "Get in touch",
-          "href": "https://factorypulse.app/contacts/new",
+          "href": "https://factorypulse.app/contact",
           "icon": "comment"
         },
         {
           "anchor": "Our Blog",
-          "href": "https://factorypulse.app/blogs",
+          "href": "https://factorypulse.app/blog",
           "icon": "newspaper"
         }
       ]
@@ -99,7 +105,7 @@
     "primary": {
       "type": "button",
       "label": "App",
-      "href": "https://factorypulse.app"
+      "href": "https://lean.factorypulse.app"
     }
   },
   "footer": {

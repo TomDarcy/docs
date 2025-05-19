@@ -14,7 +14,7 @@ servers:
         enum: [http, https]
         default: https
       host:
-        default: factorypulse.app
+        default: lean.factorypulse.app
   - url: "/api/v1"
     description: API V1
 paths:
