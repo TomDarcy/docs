@@ -1,0 +1,85 @@
+---
+title: "Managing Production Orders"
+description: "How to create and manage production orders"
+---
+
+Production Orders are the core drivers of work in the MES. They represent a specific request to manufacture a certain quantity of a product, following a defined routing.
+
+## Navigating to Orders
+
+<Steps>
+  <Step>From the MES module's main page or navigation menu, click on "Orders," "Production Orders," or "Manage Orders."</Step>
+  <Step>This will take you to the Orders index page, where you can view, filter, and manage all production orders.</Step>
+</Steps>
+
+## Creating a New Production Order
+
+<Steps>
+  <Step>On the Orders index page, click the "New Order" or "Create Order" button.</Step>
+  <Step>
+    You will be presented with a form to enter the order details:
+    - **Product**: Select the product you want to manufacture from a list of active products defined in the system.
+    - **Routing**: Choose the appropriate manufacturing routing for the selected product. The system may filter routings based on the chosen product.
+    - **Quantity**: Specify the number of units of the product to be manufactured for this order.
+    - **Planned Launch Date**: Select the date when this order is scheduled to begin production. This helps in prioritizing work.
+    - **Due Date**: (Optional) Select the date when this order is expected to be completed.
+    - **ERP Production Order Reference**: (Optional) If integrating with an ERP system, you can enter the corresponding ERP order number here for cross-referencing.
+    - **Order Number**: This is usually system-generated upon saving the order (e.g., ORD-2023-00001).
+  </Step>
+  <Step>After filling in all required information, click "Create Order" or "Save."</Step>
+</Steps>
+
+## Understanding Order Statuses
+
+Orders progress through several statuses during their lifecycle:
+
+<Accordion title="Pending">
+  The order has been created but production has not yet begun. The first operation in its routing is typically in a "To Do" state.
+</Accordion>
+
+<Accordion title="In Progress">
+  The first or a subsequent operation in the order's routing has been started by an operator.
+</Accordion>
+
+<Accordion title="On Hold">
+  An operator has paused an active operation associated with this order. The order itself is considered on hold.
+</Accordion>
+
+<Accordion title="Completed">
+  All operations in the order's routing have been successfully completed by operators. The completed_at timestamp is recorded.
+</Accordion>
+
+<Accordion title="Cancelled">
+  (If applicable) The order was cancelled before completion.
+</Accordion>
+
+<Info>
+  The Orders index page usually allows filtering by these statuses.
+</Info>
+
+## Viewing Order Details and Progress
+
+<Steps>
+  <Step>From the Orders index page, click on an Order Number or a "View"/"Details" link to open its detail page.</Step>
+  <Step>
+    On the Order detail page, you can typically see:
+    - All the information entered during order creation (product, routing, quantity, dates).
+    - The current status of the order.
+    - A list of all Work Order Operations (WOOs) associated with this order. WOOs are the individual instances of each step defined in the routing, specific to this order.
+    - The status of each WOO (e.g., "To Do," "In Progress," "Paused," "Completed").
+    - The currently active WOO and which Org it's assigned to.
+    - Timestamps for when the order was created, launched (actual start of first WOO), and completed.
+  </Step>
+</Steps>
+
+## Modifying Orders
+
+<Steps>
+  <Step>Depending on system configuration and user permissions, you might be able to edit certain details of an order after it has been created (e.g., quantity, due date), especially if it's still in a "Pending" state.</Step>
+  <Step>Look for an "Edit Order" button on the order detail page.</Step>
+  <Step>Cancelling an order might also be an option, which would typically move it to a "Cancelled" status and halt any further work.</Step>
+</Steps>
+
+<Check>
+  With orders created, the next step is to understand the [Operator Workflow](./operator-workflow): Executing Operations on the shop floor.
+</Check>

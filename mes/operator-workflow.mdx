@@ -1,0 +1,128 @@
+---
+title: "Operator Workflow"
+description: "How to perform and record manufacturing tasks"
+---
+
+This guide is for shop floor operators who interact with the MES to perform and record their manufacturing tasks.
+
+## Accessing the Operator Dashboard
+
+<Steps>
+  <Step>Log in to the system with your user credentials.</Step>
+  <Step>Navigate to the "Operator Dashboard," "My Tasks," "Shop Floor Control," or a similarly named section. This is your main workspace.</Step>
+  <Step>The dashboard will typically display a list of **Work Order Operations (WOOs)** assigned to your Organization (Org) or work center.</Step>
+  <Step>WOOs are usually prioritized by the parent Order's planned launch date and then by the operation sequence number. You should see WOOs that are in "To Do" or "Paused" status.</Step>
+</Steps>
+
+## Starting a Work Order Operation (WOO)
+
+<Steps>
+  <Step>From your list of assigned WOOs, identify the task you need to start.</Step>
+  <Step>Click on the WOO or a "Start" button associated with it.</Step>
+  <Step>
+    The system will:
+    - Record the `actual_start_time` for the WOO.
+    - Change the WOO's status to "In Progress."
+    - The parent Order's status might change to "In Progress" if this is the first operation for that order.
+  </Step>
+  <Step>You will typically be taken to the WOO detail view.</Step>
+</Steps>
+
+## Viewing WOO Details
+
+The WOO detail view provides all the information you need to perform the operation:
+
+<Accordion title="Title and Instructions">
+  The name of the operation and detailed step-by-step instructions defined in the routing.
+</Accordion>
+
+<Accordion title="Attachments">
+  Any standard work documents (PDFs, images, diagrams) attached to this operation in the routing will be displayed.
+  - PDFs are often shown inline within the page.
+  - Images are also typically displayed directly.
+</Accordion>
+
+<Accordion title="Data Input Fields">
+  A form section where you will enter data related to the operation.
+</Accordion>
+
+## Capturing Data
+
+During or after performing the work, you need to record data as specified by the `data_input_schema` for the WOO.
+
+<Steps>
+  <Step>Locate the "Data Input," "Record Data," or "Measurements" section on the WOO detail page.</Step>
+  <Step>You will see a series of fields (text boxes, number inputs, checkboxes, dropdowns) based on what was configured for this operation in the routing.</Step>
+  <Step>
+    Enter the required information accurately.
+    - Pay attention to units (mm, kg, etc.) if specified.
+    - Some fields might be mandatory.
+  </Step>
+  <Step>
+    **Attaching Operator Files**: If you need to upload your own files (e.g., a photo of a quality issue, a measurement log), look for an "Attach File" or "Upload Evidence" button. This is separate from the admin-defined attachments.
+  </Step>
+</Steps>
+
+## Pausing a Work Order Operation
+
+If you need to stop work temporarily (e.g., machine breakdown, waiting for materials), you should pause the WOO.
+
+<Steps>
+  <Step>On the active WOO detail page, click the "Pause" button.</Step>
+  <Step>A dialog or dropdown will appear, requiring you to select a **Pause Reason** from a predefined list.</Step>
+  <Step>Select the appropriate reason.</Step>
+  <Step>
+    Confirm the pause. The system will:
+    - Record the pause reason and the time the pause started in the WOO's `pause_events`.
+    - Change the WOO's status to "Paused."
+    - The parent Order's status may change to "On Hold."
+    - A timer showing the duration of the current pause might be displayed.
+  </Step>
+</Steps>
+
+## Resuming a Work Order Operation
+
+<Steps>
+  <Step>When you are ready to continue work on a paused WOO, navigate back to it (it will be on your dashboard, marked as "Paused").</Step>
+  <Step>Click the "Resume" button.</Step>
+  <Step>
+    The system will:
+    - Record the time the pause ended in the WOO's `pause_events`, calculating the duration of that pause.
+    - Change the WOO's status back to "In Progress."
+    - The parent Order's status will revert to "In Progress."
+    - The active work timer for the operation resumes.
+  </Step>
+</Steps>
+
+## Completing a Work Order Operation
+
+Once you have finished all tasks for the WOO and entered all required data:
+
+<Steps>
+  <Step>Click the "Complete" or "Finish" button.</Step>
+  <Step>
+    The system will perform several actions:
+    - Record the `actual_end_time` for the WOO.
+    - Calculate and save the `total_active_time_seconds` (total duration minus all pause durations).
+    - Save all the data you entered in the `captured_data` field for the WOO.
+    - Change the WOO's status to "Completed."
+  </Step>
+  <Step>
+    **Advancement to Next Operation/Order Completion**:
+    <Accordion title="If there is a next WOO in the sequence for the same Order">
+      - Its status automatically changes to "To Do."
+      - The parent Order's `current_mes_work_order_operation_id` updates to this next WOO.
+      - If the next WOO is assigned to your Org, it will appear on your dashboard. You might be taken back to your dashboard, or the next task might be highlighted.
+      - If the next WOO is for a different Org, it appears on their dashboard.
+    </Accordion>
+    <Accordion title="If this is the last WOO for the Order">
+      - The parent Order's status changes to "Completed."
+      - The Order's `completed_at` timestamp is set.
+    </Accordion>
+  </Step>
+  <Step>You are typically returned to your operator dashboard to select your next task.</Step>
+</Steps>
+
+<Info>
+  Understanding how to execute operations is key to using the MES. For insights into how this data is used, see the [MES Reporting](./mes-reporting) guide.
+</Info>

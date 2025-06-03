@@ -15,10 +15,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "introduction",
-              "navigation"
-            ]
+            "pages": ["introduction", "navigation"]
           },
           {
             "group": "Account setup",
@@ -39,24 +36,29 @@
               "vm/tier_boards"
             ]
           },
-           {
-             "group": "Problem Solving",
-             "pages": [
-              "problems/quickstart",
-              "problems/templates"
-             ]
-           },
-           {
-            "group": "Continous Improvement",
+          {
+            "group": "MES",
             "pages": [
-              "ci/quickstart"            ]
-           },
-           {
-            "group": "Risk Assessments",
-            "pages": [
-              "ra/quickstart"
+              "mes/intro",
+              "mes/initial-setup",
+              "mes/managing-routings",
+              "mes/managing-production-orders",
+              "mes/operator-workflow",
+              "mes/mes-reporting"
             ]
-           }
+          },
+          {
+            "group": "Problem Solving",
+            "pages": ["problems/quickstart", "problems/templates"]
+          },
+          {
+            "group": "Continous Improvement",
+            "pages": ["ci/quickstart"]
+          },
+          {
+            "group": "Risk Assessments",
+            "pages": ["ra/quickstart"]
+          }
         ]
       },
       {

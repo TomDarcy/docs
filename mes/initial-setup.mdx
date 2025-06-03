@@ -1,0 +1,93 @@
+---
+title: "Initial Setup"
+description: "Setting up MES Prerequisites"
+---
+
+
+Before you can fully utilize the Manufacturing Execution System (MES), some foundational data needs to be in place. This guide walks you through setting up Products and Pause Reasons.
+
+## Managing Products
+
+Products are the items you manufacture. Defining them accurately is crucial for order management and routing assignments.
+
+### Navigating to Products
+
+<Steps>
+  <Step>From the main application dashboard, locate and click on the "MES" section.</Step>
+  <Step>Within the MES module, find and click on "Products" in the administration menu. This will take you to the Products index page.</Step>
+</Steps>
+
+### Creating a New Product
+
+<Steps>
+  <Step>On the Products index page, click the "New Product" button.</Step>
+  <Step>
+    You will be presented with a form to enter the product details:
+    - **Part Number**: Enter a unique identifier for your product (e.g., SKU12345, RAW-MATERIAL-001). This field is required.
+    - **Name**: Provide a human-readable name for the product (e.g., "Large Blue Widget", "Main Assembly Component A"). This field is required.
+    - **Description**: (Optional) Add any further details or specifications for the product.
+    - **Active**: Check this box to make the product available for use in new orders and routings. Uncheck it to deactivate the product if it's obsolete or not currently in use.
+  </Step>
+  <Step>Once all necessary information is entered, click "Create Product" (or a similar button like "Save").</Step>
+</Steps>
+
+### Viewing and Editing Products
+
+<Steps>
+  <Step>From the Products index page, you can see a list of all defined products.</Step>
+  <Step>Click on a product's Part Number or a "View"/"Details" link to see its full information.</Step>
+  <Step>To modify a product, look for an "Edit" button on its details page or directly in the list view. This will open the same form you used for creation, allowing you to update its attributes.</Step>
+</Steps>
+
+### Activating/Deactivating Products
+
+<Info>
+  A product usually cannot be deleted if it has been used in orders. In such cases, deactivating it is the standard procedure. The system will prevent deletion and may offer to deactivate it instead.
+</Info>
+
+<Steps>
+  <Step>Products can generally be marked as "Active" or "Inactive".</Step>
+  <Step>This is done via the "Edit" page using the "Active" checkbox.</Step>
+</Steps>
+
+## Managing Pause Reasons
+
+Pause Reasons (also known as Hold Reasons) are used by operators to specify why a manufacturing operation was temporarily stopped. Defining a clear list of reasons is vital for accurate downtime tracking and reporting.
+
+### Navigating to Pause Reasons
+
+<Steps>
+  <Step>In the MES module, find and click on "Pause Reasons" in the administration menu.</Step>
+  <Step>This will take you to the Pause Reasons index page.</Step>
+</Steps>
+
+### Creating a New Pause Reason
+
+<Steps>
+  <Step>On the Pause Reasons index page, click the "New Pause Reason" button.</Step>
+  <Step>
+    Fill in the details for the pause reason:
+    - **Reason Code**: A short, unique code for the reason (e.g., MACH_DOWN, NO_MATRL). This field is required.
+    - **Description**: A clear, descriptive explanation of the pause reason (e.g., "Machine Breakdown," "Waiting for Materials," "Quality Check"). This field is required.
+    - **Active**: Check this box to make the reason available for selection by operators.
+  </Step>
+  <Step>Click "Create Pause Reason" (or "Save").</Step>
+</Steps>
+
+### Viewing and Editing Pause Reasons
+
+<Steps>
+  <Step>The Pause Reasons index page lists all defined reasons.</Step>
+  <Step>You can typically edit a reason by clicking an "Edit" button or link associated with it.</Step>
+</Steps>
+
+### Activating/Deactivating Pause Reasons
+
+<Steps>
+  <Step>Similar to products, pause reasons can be activated or deactivated. This is usually done through the edit form or a quick toggle on the list.</Step>
+  <Step>Deactivating a reason removes it from the selection list for operators when they pause an operation but preserves it for historical data analysis.</Step>
+</Steps>
+
+<Check>
+  With Products and Pause Reasons configured, you are ready to move on to Defining Manufacturing Routings.
+</Check>

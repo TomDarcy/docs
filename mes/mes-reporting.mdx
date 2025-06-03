@@ -1,0 +1,151 @@
+---
+title: "Reporting"
+description: "Using MES Reporting"
+---
+
+# MES Reporting
+
+The MES collects valuable data during production. The reporting features allow managers and planners to gain insights into manufacturing performance, identify bottlenecks, and track key metrics.
+
+## Navigating to Reports
+
+<Steps>
+  <Step>From the MES module's main page or navigation menu, click on "Reports," "Analytics," or "Dashboards."</Step>
+  <Step>This will take you to the main reporting area, which may present several types of reports.</Step>
+</Steps>
+
+## Available Reports
+
+The following are common reports available in the MES, based on the V1 specification.
+
+### 1. WIP (Work-In-Progress) Dashboard
+
+<Accordion title="Purpose">
+  Provides a real-time overview of current production activity.
+</Accordion>
+
+<Accordion title="How to Use">
+  <Steps>
+    <Step>Typically the default view in the Reports section or a prominent dashboard.</Step>
+    <Step>
+      Look for sections showing:
+      - **Order Counts by Status**: A summary of how many orders are currently "Pending," "In Progress," "On Hold," and "Completed Today." This gives a quick snapshot of the overall workload and flow.
+      - **List of In Progress/On Hold Orders**: A detailed list of orders that are currently active or paused. This list usually shows:
+        - Order Number
+        - Product being manufactured
+        - Quantity
+        - Current Work Order Operation (WOO) title
+        - Organization (Org) assigned to the current WOO
+        - Current status (In Progress or On Hold)
+    </Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="Insights">
+  Helps identify if work is piling up in certain statuses, which orders are actively being worked on, and where current holds are occurring.
+</Accordion>
+
+### 2. Cycle Time Analysis Report
+
+<Accordion title="Purpose">
+  Analyzes how long operations are taking compared to their target times.
+</Accordion>
+
+<Accordion title="How to Use">
+  <Steps>
+    <Step>Select this report from the reporting menu.</Step>
+    <Step>
+      You can typically filter the analysis by:
+      - **Date Range**: Focus on operations completed within a specific period.
+      - **Routing**: Analyze performance for a specific manufacturing routing or even specific operations within that routing.
+    </Step>
+    <Step>
+      The report usually displays:
+      - **Average, Minimum, and Maximum `total_active_time_seconds`**: For each operation (or routing operation definition), it shows the statistical spread of completion times.
+      - **Comparison against `target_time_seconds`**: Highlights variances, showing if operations are generally meeting, exceeding, or falling short of their targets. This might be shown as a percentage or absolute difference.
+      - Visualizations like bar charts or trend lines might be used.
+    </Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="Insights">
+  Identify operations that are consistently taking longer than expected, which could be bottlenecks. Also, find operations that are faster than target, which might indicate efficient practices or overly generous targets.
+</Accordion>
+
+### 3. Hold/Pause Analysis Report
+
+<Accordion title="Purpose">
+  Provides insights into why and for how long operations are being paused.
+</Accordion>
+
+<Accordion title="How to Use">
+  <Steps>
+    <Step>Select this report from the reporting menu.</Step>
+    <Step>
+      Filter by:
+      - **Date Range**: Analyze pauses that occurred within a specific period.
+      - **Organization (Org)**: Focus on pauses within a particular department or work center.
+      - **Pause Reason**: You might be able to filter for specific pause reasons.
+    </Step>
+    <Step>
+      The report typically shows:
+      - **Total Time Paused by Reason**: Aggregated duration of all pauses, grouped by each `MES_Pause_Reason.description`. This helps identify which reasons contribute most to downtime.
+      - **Frequency of Each Pause Reason**: How many times each pause reason was selected.
+      - Charts (e.g., Pareto charts) are often used to visualize the most significant reasons by duration or frequency.
+    </Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="Insights">
+  Understand the primary causes of production interruptions. This data is crucial for improvement efforts aimed at reducing downtime (e.g., if "Machine Breakdown" is high, it might point to maintenance issues).
+</Accordion>
+
+### 4. Order Schedule Adherence
+
+<Accordion title="Purpose">
+  Tracks how well production orders are meeting their planned launch dates.
+</Accordion>
+
+<Accordion title="How to Use">
+  <Steps>
+    <Step>Select this report or view.</Step>
+    <Step>Filter by **Launch Date** ranges (e.g., "Launching Today," "Launching This Week," "Overdue Launch").</Step>
+    <Step>The view lists orders and their current status, highlighting those that are overdue for launch but not yet started, or those that started late.</Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="Insights">
+  Helps planners and managers monitor if production is starting on time and identify orders that need attention to prevent further delays.
+</Accordion>
+
+### 5. Data Capture Analysis (Potential Report)
+
+<Info>
+  The availability and specifics of this report depend on the implementation following the data input refactor.
+</Info>
+
+<Accordion title="Purpose">
+  To analyze the data collected by operators via the `data_input_schema` fields during operations.
+</Accordion>
+
+<Accordion title="How to Use">
+  <Steps>
+    <Step>If available, this report would allow you to select specific data input fields (e.g., a particular measurement).</Step>
+    <Step>You could then see the collected values, potentially with filters for date range, product, or routing.</Step>
+    <Step>Basic statistical analysis (mean, median, range) or visualizations (histograms, control charts if SPC features are implemented) might be available.</Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="Insights">
+  Useful for quality control, process monitoring (e.g., are measurements within tolerance?), and identifying trends or anomalies in operator-captured data.
+</Accordion>
+
+## Exporting Reports
+
+<Info>
+  Some reports may offer an option to export the data (e.g., to CSV or Excel) for further analysis in other tools. Look for "Export" or "Download" buttons.
+</Info>
+
+<Check>
+  By regularly reviewing these reports, you can make data-driven decisions to optimize your manufacturing processes, improve efficiency, and reduce downtime.
+</Check>

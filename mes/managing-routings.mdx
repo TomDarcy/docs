@@ -1,0 +1,97 @@
+---
+title: "Defining Manufacturing Routings"
+description: "How to define manufacturing routings"
+---
+
+
+Manufacturing Routings (or simply Routings) define the sequence of operations (steps) required to produce a product. They are the backbone of the production process in the MES.
+
+## Understanding Routings
+
+A Routing consists of:
+
+- Basic information (like a name and an associated product).
+- A list of sequential operations.
+- Each operation can have detailed instructions, assigned organizational units (orgs/departments), target times, and specific data fields that operators need to fill out.
+
+## Navigating to Routings
+
+<Steps>
+  <Step>From the MES module's main page or navigation menu, click on "Manage Routings."</Step>
+  <Step>This will take you to the Routings index page, where you can see existing routings and create new ones.</Step>
+</Steps>
+
+## Creating a New Routing
+
+<Steps>
+  <Step>On the Routings index page, click the "New Routing" button.</Step>
+  <Step>
+    Fill in the initial routing information:
+    - **Name**: A descriptive name for the routing (e.g., "Standard Assembly Process for Model X," "Widget Painting Line").
+    - **Product (or Product Identifier)**: Associate this routing with a specific product defined in the MES. You might select from a list of existing products or enter a product code.
+    - **Active**: Ensure this is checked if the routing is ready for use.
+  </Step>
+  <Step>Save the basic routing information. You will typically be taken to a page where you can start adding operations.</Step>
+</Steps>
+
+## Adding Operations to a Routing
+
+Once a routing is created, you need to define its operational steps. Operations are usually managed within the detail view of a specific routing.
+
+<Steps>
+  <Step>Find the section for "Operations," "Routing Steps," or similar.</Step>
+  <Step>Click "Add Operation," "New Operation," or a similar button.</Step>
+  <Step>
+    For each operation, you'll need to define:
+    - **Sequence Number**: A number (e.g., 10, 20, 30) that determines the order of this operation in the routing.
+    - **Title**: A clear and concise name for the operation (e.g., "Initial QA Check," "Component Soldering," "Final Polishing").
+    - **Organization (Org/Department)**: Assign this operation to the specific organizational unit or work center responsible for performing it. This helps in assigning tasks to the correct operator dashboards.
+    - **Target Completion Time**: The expected or standard time it should take to complete this operation (e.g., in seconds). This is used for performance tracking.
+    - **Instructions**: Detailed step-by-step instructions for the operator. This can be a rich text field allowing for formatted instructions.
+    - **Standard Work Documents/Attachments**: You can often attach files like PDFs (e.g., technical drawings, safety sheets) or images that operators will need to refer to. These will be viewable by the operator when they are performing the operation.
+  </Step>
+</Steps>
+
+## Defining Data Input Fields for an Operation
+
+For many operations, operators need to record specific data (measurements, checks, counts, etc.). The MES allows you to define these data input fields for each operation.
+
+<Steps>
+  <Step>When creating or editing an operation, look for a section like "Data Input Fields," "Data Collection," or "Operator Inputs."</Step>
+  <Step>The system may use a dedicated "Data Input Fields" management system, allowing you to create reusable fields or define them ad-hoc for an operation.</Step>
+  <Step>
+    For each field, specify:
+    - **Name/ID**: A system identifier for the field (e.g., measurement_x, defect_code).
+    - **Label**: The human-readable question or label the operator will see (e.g., "Enter Measurement X (mm)," "Select Defect Code," "Was quality check passed?").
+    - **Field Type**: The type of data to be collected:
+      <Accordion title="Text">
+        For free-form text input.
+      </Accordion>
+      <Accordion title="Number">
+        For numerical input (integers or decimals). You might be able to specify min/max values or units.
+      </Accordion>
+      <Accordion title="Boolean">
+        For a yes/no or true/false input (often displayed as a checkbox).
+      </Accordion>
+      <Accordion title="Select/Dropdown">
+        For choosing from a predefined list of options. If so, you'll need to specify the available options.
+      </Accordion>
+    - **Required**: Check this if the operator must provide input for this field before completing the operation.
+    - **(Optional) Unit**: For number fields, you might specify units like "mm", "kg", "PSI".
+    - **(Optional) Validation Rules**: Some systems allow defining basic validation (e.g., min/max values for numbers, pattern matching for text).
+  </Step>
+  <Step>Add as many data input fields as necessary for the operation. The order in which you add them to the operation is the order operators will see them.</Step>
+</Steps>
+
+## Activating/Deactivating Routings
+
+<Steps>
+  <Step>Similar to Products and Pause Reasons, Routings can be made "Active" or "Inactive."</Step>
+  <Step>An active routing can be assigned to new production orders.</Step>
+  <Step>An inactive routing is typically hidden from selection for new orders but remains in the system for historical data purposes (i.e., orders that previously used it).</Step>
+  <Step>This status is controlled by an "Active" checkbox in the routing's main edit page or a toggle action on the index page.</Step>
+</Steps>
+
+<Check>
+  After defining your routings and their operations, you are ready to start [Managing Production Orders](./managing-production-orders).
+</Check>
