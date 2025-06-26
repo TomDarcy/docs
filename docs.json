@@ -52,7 +52,7 @@
             "pages": ["problems/quickstart", "problems/templates"]
           },
           {
-            "group": "Continous Improvement",
+            "group": "Continuous Improvement",
             "pages": ["ci/quickstart"]
           },
           {
@@ -115,5 +115,8 @@
       "github": "https://github.com/factorypulse",
       "linkedin": "https://linkedin.com/company/factorypulse"
     }
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude"]
   }
 }
